@@ -1,0 +1,8 @@
+.local
+packageCache.json
+*ProjectSettings.json
+*.cache
+*.props
+*.backup
+*AllDependencies.json
+
