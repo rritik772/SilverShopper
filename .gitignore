@@ -5,5 +5,8 @@ packageCache.json
 *.props
 *.backup
 *AllDependencies.json
+
 *Config.json
+*shoppingList.csv
+
 *.screenshots
