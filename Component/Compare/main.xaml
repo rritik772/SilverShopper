@@ -1,0 +1,191 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="bbPrice" Type="InArgument(x:Double)" />
+    <x:Property Name="fkPrice" Type="InArgument(x:Double)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1130.4,1658.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>main_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.ComponentModel</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="main" sap:VirtualizedContainerService.HintSize="1036,1593.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="994.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Component\Shop\ShopMain.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="994.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Component\amazon\AmazonShopMain.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="994.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Component\Compare\BigBasketPrice.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:Double" x:Key="price">
+          <mva:VisualBasicReference x:TypeArguments="x:Double" ExpressionText="bbPrice" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="994.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Component\Compare\FlipkartPrice.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:Double" x:Key="price">
+          <mva:VisualBasicReference x:TypeArguments="x:Double" ExpressionText="fkPrice" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <If Condition="[bbPrice &gt; fkPrice]" sap:VirtualizedContainerService.HintSize="994.4,886.4" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="475.2,489.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Use Browser Chrome: Best Online Grocery Store in India. Save Big on Grocery Shopping | bigbasket.com" sap:VirtualizedContainerService.HintSize="433.6,396.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="2e34dab6-e717-4240-b148-25f202ef641a" Version="V1">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,180" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Buy now&quot;]" />
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABsElEQVQ4T2N48G6PweqLbuuXnbPcTwped8l7/YO3uwwY1l7yvA8U+E8O3nIt4j4DjLN/gsn/G0F6/482GMEV+CfJ/s9pU4PzsWG4AadKjf6/ldH6fyneAC6pZcL3PzhdFs7HhmlnwPod5v+jQmT+p9Yq/5+wyeh/9Qyd//XzdP4vOmmB34DbXnr/H1nogNlgvrPuf3Vt/v/KWvz/2diZ/4tIcPzvXY8IJwwDQPhcpsH/Q13G/x/Y6oL55zMgrppz0Oy/nqXgf21TAdwG3AXaCBPbOdcULPZKRRsuVtKv+Z+BgeH/guMQr2AYcKrEEK54xWnL/29lIa5afRiioWetMdiAjhUQV2EYcCENEQvrdpuDxUB4+SmIAaCABBkwdYcpdgNeaGr/X7PfHCx2vBoi9shcB8wH4ZAM+f/C4hxwPqYBGtpgP4PCAsR/A/TC/Gqd/1EFCv/dwiX/s3My/89oVMU04GC38f+rYfr/ty8x/X+80vD/LWB0Xgcm7T3TTP5nNqkCExX/f3Nnkf+FPRpwzWAD1lx0Izszrb/sd5/h2otlBkAOydl5+Tnr9RefzjQAAAIEbPBUWw7NAAAAAElFTkSuQmCC" InformativeScreenshot="b3832839c71927058cde0bc6f73693b9.png" Selector="&lt;html app='chrome.exe' title='Best Online Grocery Store in India. Save Big on Grocery Shopping | bigbasket.com' /&gt;" Url="https://www.bigbasket.com/basket/?ver=1" />
+            </uix:NApplicationCard.TargetApp>
+          </uix:NApplicationCard>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="475.2,727.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Use Browser Chrome: Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Bo" sap:VirtualizedContainerService.HintSize="433.6,634.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="418d2f8f-3c1a-49b3-8555-adf2904c3b6e" Version="V1">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,377.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="responsePrice" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ClickType="Single" DisplayName="Click 'Cart'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="418d2f8f-3c1a-49b3-8555-adf2904c3b6e" Version="V1">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="https://www.flipkart.com/" DesignTimeRectangle="1496, 154, 28, 19" ElementType="Text" FriendlyName="'Cart'" FullSelectorArgument="&lt;webctrl aaname='Cart' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Cart' tag='SPAN' type='' class='' check:innerText='Cart' /&gt;" Guid="f2a5f9ed-8bed-4356-9898-0d0ce93b37fa" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAXCAYAAABqBU3hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAHaSURBVEhL7ZTJSgNBEIZ9HO8+hmfx6sFHEC85uiCIBw2IEPQmEhBc0ENUJAdNUAmIUVETcddIXLLO3lP232NPZiaKUcR4SMNPSM109VdV/3Rbe1+BmqkWQAvg/wF0h8uUODNJM0ksixGlbyzqjVR87/2WfACdoyU6ubfItolyBUbxY5Mu80z8f3hl1DP1cwjsRU7Im8cHMLuti4ozOUvAINYRKlLqwoGa39Xdd7+rhgCObi0BMBPX3BgUjqmiM9GkAzCyrNJj0ekMdPPMKBRVxDN5kKLbdP7ovHN8Z5FhOSOVa37HyeUDyOYY6Xz2E/xAb9wrHFRUbKpoNm0cGrR1aorkgIB/JAAW4tdPjBb2dBpcUChfsoWGFhXqGi+LfC6A3IjE/XNV36FeYTR9s1W3jRgRKpX7ZB7VsGl4qVaIjENyL/TtDkDTfESoBO2VKwgQLKQhgEY8MLaqiurggdEVVXQE4L8CMJfQicE0HAStRSz4FcA8WLEDw33+0Qh+BOC9B/Ddr6eNunsgsqmRyc0FI65xiOy7078CgOluX5jYm8yYNMBNibgPAArehPjdv6zdhKh4OWWIMeBgJL3iTofjJ9e1TwEg3DPIh33oNmJ1AH+tFkALoMkABXoDytAbqTw006UAAAAASUVORK5CYII=" InformativeScreenshot="5c62a13d52f436fd2cffbdb5c60653a4.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='https://images-eu.ssl-images-amazon.com/images/I/11EIQ5IGqaL._RC%7C01ZTHTZObnL.css,41wZkyTaWoL.css,31Y8m1dzTdL.css,013z33uKh2L.css,017DsKjNQJL.css,0131vqwP5UL.css,41EWOOlBJ9L.css,11TIuySqr6L.css,01ElnPiDxWL.css,11bGSgD5pDL.css,01Dm5eKVxwL.css,01IdKcBuAdL.c*' title='Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books &amp;amp; More. Best Offers!' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target Accuracy="0.68" DesignTimeRectangle="1474, 156, 15, 15" ElementType="Icon" FriendlyName="'SVG'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;a&amp;gt;svg' tag='svg' /&gt;" FuzzyAccuracy="0.59" FuzzySelectorArgument="&lt;webctrl type='' tag='svg' class='V3C5bO' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFUSURBVDhPpZM/S8NQFMX9OH4Bv4efQKjQya24OLg6dOgkCHYxm0JB3Iqd1KkKOokdzFCwgyI1TWL+kNpjTuTF3LwkJnjgLO/d+8s7972sre9ayDtRq6U57PdhT6fwB4PC/UKYswiATkcURt0ubNOENxqJ9awLYVcPNmAYotAbDmFZlrA9mYiaFGb7qyTdZs/B9rEL9/UDaLdF8V9OYed3YQJ7mi2xsb/A2Y0L5/6xPjCuS2E7J58JTGn8HOHtPcRyHl8II+dmmJrr8T6TiJmpqJo8Dwh/Tp7XKgiTGXM0AqaiNpFxHaT9ApaPWkfsKYTRpVFLxMtSvRqsSdRbMxK9GqxJ1MPL33nRGozeOnIrrcQHnu0rhFWZAIqzze9pMB6dD7bM/EOol/lX9cnUV+uKwGx/JWzv1NPmxUeqNKuC0YzJKz+48MW6Mt8Vnw9r/n0B5bbwDU79ayT6wrPDAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Buy now&quot;]" />
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAPFSURBVFhHxZZbSBRhFMc/Q0i6vIQVIWW0FZVB+lYIJb1kVE8F2Us3eukl8aGLWpGFdAEvZFAUEUFR+CBBN7ttmlne1rumLu5u6uquOu6u2+646+6cvjPr0DR7atdLNPBjhu+c8/3Pd74z3wxTLnCxDLCzR2Bh1f8UriG52cEp2V8XOJlTxhADanx1i8Betey3sWiQY+pZuM3DHMiU7K/LZ48TjDWJoSAVHa918Kx4C4hfF4TZ/sRo9RI5xqxfGWYz1q0G/9h8YUo2dJkMiSfa9Gt9zW/XA1RzRxWTVXFg+7AibDwSVh6Dsdpx1EAt1JTFzU2rnnZ+0oECdxr8l6i1UJuBj2f2H4mYQKAlk9+Lw8YjIYnPp2Jpu0LkCjhKQAp+pG1/QQpaQHLnkDY1EROQJvYDSA4IepeTdorARAoABEN3wq4mqh4I+FvB57lN2ij84kMI+mtJm5aoEvCMpctVEF3FIHnnkT6INMHA68znq/eGYggfLVElgAgDe+V9xWq4hWzwCCkw6YqV8QhJ4B7JhEmxlvvYwDFwiJyDIuoEEKFvDTgGL8tJ4B7jSkMEeck7wWUvBLtps1wJJQaf3a74EadD14uobci0EkAmf8TyFcbDULcOrF2pMviMY2hDHxRp69puOnW3aEh37gOw07XAzjTIHCp52qeeb9oJRAJXe+zmbSHmbCPE5LaTuFzreVeH/Oc0ARRPzSvzUaJqDMYDeiWGYVfPBdiMBwseuChBJOFCo7Qxrw72FL0ZGROSmpU4njbPZA54VZlhYjmtYcK7Ct8NjtqS+atDx+GPCMwWXH3albIJrfjqSwYx4FhopWIUGIzxg2WWDPRsslJN96D84mfKXw1/uXkms+SF/kiPVhyxmrbWUP5q5iSB3Pv5g1QCftvS75S/GgYj/EcxAgEbC3j6lw0PdCWZzO0pRi3UqxefY5AUO8aBPSZIzf3XBJzfN1iwvNkPb/Xuvv5yHCeV91qFfMIR3Y9jyumHdHfs/EppRFUBaXi+E8t578Wlb1qhaOnqSK+i5mYwzLsxApI9zu3uX2esqc9opSaPBrkfiLkZ2HgzKPB9wr3G0ls6d7Sh4KvKk8248rwnt0zH75QO7SssF9Ju6McV8ISjBLddrXSjHU++iuqjX37TUcF/4PnDLKCO38XnW4Pc5tX6UjDo43sxQwIWBvi51Sawt6DcTPlTMDDxhxkitCSMUifgtceFNZQ/BYPueSIHZkLT+7Re6hWseHekgvInEJnUzrI4IgemS1npYTN+YrXY6pIbKH8NXJNl/QQY2SMPYJ5++AAAAABJRU5ErkJggg==" InformativeScreenshot="8e95aeeee844f792ee9449ad5bb89137.png" Selector="&lt;html app='chrome.exe' htmlwindowname='https://images-eu.ssl-images-amazon.com/images/I/11EIQ5IGqaL._RC%7C01ZTHTZObnL.css,41wZkyTaWoL.css,31Y8m1dzTdL.css,013z33uKh2L.css,017DsKjNQJL.css,0131vqwP5UL.css,41EWOOlBJ9L.css,11TIuySqr6L.css,01ElnPiDxWL.css,11bGSgD5pDL.css,01Dm5eKVxwL.css,01IdKcBuAdL.c*' title='Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books &amp;amp; More. Best Offers!' /&gt;" Url="https://www.flipkart.com/" />
+            </uix:NApplicationCard.TargetApp>
+          </uix:NApplicationCard>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

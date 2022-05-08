@@ -1,0 +1,607 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ShopMain" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_item_price" Type="InOutArgument(x:Double)" />
+    <x:Property Name="in_item_actual_name" Type="InOutArgument(x:String)" />
+    <x:Property Name="in_item" Type="InOutArgument(x:String)" />
+    <x:Property Name="in_item_exist" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="all_items" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="url" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1498.4,5558.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ShopMain_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>UiPath.OCR.Contracts</x:String>
+      <x:String>UiPath.OCR.Activities</x:String>
+      <x:String>UiPath.OCR.Contracts.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ShopMain" sap:VirtualizedContainerService.HintSize="1508.8,5493.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="shoppingDatatable" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Use Browser Chrome: Online Grocery Shopping and Online Supermarket in India - bigbasket" sap:VirtualizedContainerService.HintSize="1467.2,5400.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1" WindowResize="Maximize">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1433.6,5184" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="1392,22.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke createDatatable workflow" sap:VirtualizedContainerService.HintSize="1392,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Component\ShoppingList\createDatatable.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <OutArgument x:TypeArguments="sd:DataTable" x:Key="shoppingDatatable">[shoppingDatatable]</OutArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[shoppingDatatable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="1392,4780.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+              <ui:ForEachRow.Body>
+                <ActivityAction x:TypeArguments="sd:DataRow">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1358.4,4663.2" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="item" />
+                      <Variable x:TypeArguments="x:Int32" Name="quantity" />
+                      <Variable x:TypeArguments="x:String" Name="item_upper" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="content" DisplayName="get content" sap:VirtualizedContainerService.HintSize="1316.8,188" sap2010:WorkflowViewState.IdRef="GetRowItem_1" Row="[row]">
+                      <ui:GetRowItem.Value>
+                        <OutArgument x:TypeArguments="x:String">[item]</OutArgument>
+                      </ui:GetRowItem.Value>
+                    </ui:GetRowItem>
+                    <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="quantity" DisplayName="get quantity" sap:VirtualizedContainerService.HintSize="1316.8,188" sap2010:WorkflowViewState.IdRef="GetRowItem_2" Row="[row]">
+                      <ui:GetRowItem.Value>
+                        <OutArgument x:TypeArguments="x:Int32">[quantity]</OutArgument>
+                      </ui:GetRowItem.Value>
+                    </ui:GetRowItem>
+                    <Assign sap:VirtualizedContainerService.HintSize="1316.8,61.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[item_upper]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[item.ToUpper()]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <uix:NClick ClickType="Single" DisplayName="Click 'I'" sap:VirtualizedContainerService.HintSize="1316.8,157.6" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.bigbasket.com/" DesignTimeRectangle="623, 178, 533, 30" ElementType="InputBox" FriendlyName="'INPUT input'" FullSelectorArgument="&lt;webctrl id='input' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl id='input' tag='INPUT' type='text' class='form-control ng-pristine ng-untouched ng-valid ng-empty' aaname='' /&gt;" Guid="5cbbe820-32c5-43ba-be06-23e4963a5ed1" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAhkAAAAiCAYAAADyOMvMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAANWSURBVHhe7dvbkdowAAXQNJPWKGP5ycd2wGwfSwMpgDJIGY4l+SFZYANrbfJxzoxmFvyQEB/3mkx+dAAADSgZAEATSgYA0MRUMt7f3w3DMAzDMF4ev37/LEZRMgAAXqVkAABNKBkAQBNKBgDQhJIBADShZAAATSgZAEATSgYA0ISSAQA0oWQAAE3sXjKun8fucDjM4+3cXYdj3+3yceiOn4/PHs7fb82X7pTvwzCeWc8jwn7vcs/LqTt8XIYXAPB1u5aMWDAWAR2D+x8VjadKxp9zdzyc+mqwl1Ayjt35z/AySsXjtGOWKxkA/K92LRmPhXr5hL88v/wl5NSd8xAdikB475AFeHnN/H5az6U7v43H7qwvBOx0fVYC7r3fi3N+nNO9b5aoWyUjrSmF+XD8M83xyJxB8Vn7++QlI60pv+Dar69cw629Kt8bi9b69wQAW3YtGakErIVS/SRfFJMYsNmvCcP9puPL170UkItrhtCPgZ4H/fL+uey6KJ6bXTvMPa49zVsGeOlWycg//xDieSnYmLNaf3w978dWyVjbq3iv6dpw3fJ7WvusAFDbt2RMUkilp+AsnIogG4WwTcEXSkEebEEIxrJk5CWhflLPFQUmmueqLErGrbXk668DfWkoEYsxryccL9e+NefW/qyXjPW92ioZAPCsRiVjlj89p7/r4E3HbwdbHqJ1yaiDOvd6ybgTsiGIh3PqQF9aX1t9fGvO7f2p1xSuGefYWE9RMoJw/vwdKRwAPKt5ySiKQRVkpa0n9e/+JaO8tgzx/UvG9pxb+1OvKd+f9b1a/25S4VA0AHjGriUjPvlmQR2EYJzfS2FVBGkfblN4haCrfqnIzq9KxhCs+Xv9Oafh/K+UjLSWLJTj3HPQtigZW3Nu7k84vvIZ1vYqnjt9nlBI8nnC63Edac76bwAo7Voyglgq+uCZxqJ0jMGUHz9fsjiLQTgev/2/S5aZVl5z7IMz/ONLWsvLJSOIIT3etwzTJiUjWJkzWN2foQxMx+P/finnuLdXY6EJ758u1+56mV+new0LyYtP/jcALOxeMgAAAiUDAGhCyQAAmlAyAIAmlAwAoAklAwBoQskAAJpQMgCAJpQMAKCJ1ZJhGIZhGIbx6rhbMgAA9tN1fwEMtnB3JqKLaAAAAABJRU5ErkJggg==" InformativeScreenshot="48f5d9877b73771069caeb31097d8bf8.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Grocery Shopping and Online Supermarket in India - bigbasket' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                              <uix:Target DesignTimeRectangle="1162, 183, 20, 20" FriendlyName="'I'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button&amp;gt;i' parentid='navbar-main' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='navbar-main' tag='I' class='icon svg-header svg-search svg-search-dim hidden-sm hidden-xs' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF1SURBVEhL3ZSxSsRAEIZ9mXsCX8An8Al8AV/gfAHtrLS08MBStLhSuyvECBYpTk0heJAihUWUgzu4YvQLzjKbbDYRYuPAB0lmsv/M7OxuHc5G8pf8Y4Hju22ZZmN5K+9FbbX5kJf32+p76J8QQYHL+X61mFqxfJZFmUi5zn++iJSrXC7Svca/dRoCs8VJtcB68yk3r0eeD6hMY7BpdtCIsXgCZI6R8enDjhdY5+xx11XEcygGnACZ0RYy71pcoUVYsXwK+sEJUCoWaksMbVfbfjgBNhGzzj7QHizJJ0G/E6Cf9N46+4KRYMjnBGJBXegYh3xeBcy2dfYllpwTyL5PKMY02YAudJI690CniKmwAV1oYm1nwQlAn4Nj0YMZ2ztPQMvtc8/Y+yp2MD0B0FZhSX7eqAZhblRraXHlxVgaAsCi9ubEqMoabSHztLiu3ttEggIK2bIAiylMS72qmEhU4De0iQwmACGRQQUAEfZP3wcX8BnJF3AaAMWDqWIsAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayBetweenKeys="1" DisplayName="Type Into 'I'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1316.8,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Text="[item]" Version="V1">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.bigbasket.com/" DesignTimeRectangle="623, 178, 533, 30" ElementType="InputBox" FriendlyName="'INPUT input'" FullSelectorArgument="&lt;webctrl id='input' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl id='input' tag='INPUT' type='text' class='form-control ng-pristine ng-untouched ng-valid ng-empty' aaname='' /&gt;" Guid="0013ff46-ca5b-4c50-a206-96ef2469ae23" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAhkAAAAiCAYAAADyOMvMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAC8SURBVHhe7daxDYBAEMAwlmFTJmOxp3uJhgJdOlvKDjkWAEDAZAAACZMBACT2ZFz3KUmSNNZrMgAA/jIZAEDCZAAACZMBACRMBgCQMBkAQMJkAAAJkwEAJEwGAJAwGQBAwmQAAAmTAQAkTAYAkDAZAEDCZAAACZMBACRMBgCQMBkAQMJkAAAJkwEAJEwGAJAwGQBAwmQAAAmTAQAkTAYAkDAZAEDCZAAACZMBACQ+J0OSJGmqPRkAAHPWegBsec7R8SylLwAAAABJRU5ErkJggg==" InformativeScreenshot="8c5eb21de6716544d00ce843555cdfa7.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Grocery Shopping and Online Supermarket in India - bigbasket' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                              <uix:Target DesignTimeRectangle="1162, 183, 20, 20" FriendlyName="'I'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button&amp;gt;i' parentid='navbar-main' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='navbar-main' tag='I' class='icon svg-header svg-search svg-search-dim hidden-sm hidden-xs' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF1SURBVEhL3ZSxSsRAEIZ9mXsCX8An8Al8AV/gfAHtrLS08MBStLhSuyvECBYpTk0heJAihUWUgzu4YvQLzjKbbDYRYuPAB0lmsv/M7OxuHc5G8pf8Y4Hju22ZZmN5K+9FbbX5kJf32+p76J8QQYHL+X61mFqxfJZFmUi5zn++iJSrXC7Svca/dRoCs8VJtcB68yk3r0eeD6hMY7BpdtCIsXgCZI6R8enDjhdY5+xx11XEcygGnACZ0RYy71pcoUVYsXwK+sEJUCoWaksMbVfbfjgBNhGzzj7QHizJJ0G/E6Cf9N46+4KRYMjnBGJBXegYh3xeBcy2dfYllpwTyL5PKMY02YAudJI690CniKmwAV1oYm1nwQlAn4Nj0YMZ2ztPQMvtc8/Y+yp2MD0B0FZhSX7eqAZhblRraXHlxVgaAsCi9ubEqMoabSHztLiu3ttEggIK2bIAiylMS72qmEhU4De0iQwmACGRQQUAEfZP3wcX8BnJF3AaAMWDqWIsAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NClick ClickType="Single" DisplayName="Click 'I'" sap:VirtualizedContainerService.HintSize="1316.8,157.6" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.bigbasket.com/" DesignTimeRectangle="1162, 183, 20, 20" FriendlyName="'I'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button&amp;gt;i' parentid='navbar-main' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='navbar-main' tag='I' class='icon svg-header svg-search svg-search-dim hidden-sm hidden-xs' aaname='' /&gt;" Guid="11370a82-c4c8-45a4-a837-2be0798aad5a" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF1SURBVEhL3ZSxSsRAEIZ9mXsCX8An8Al8AV/gfAHtrLS08MBStLhSuyvECBYpTk0heJAihUWUgzu4YvQLzjKbbDYRYuPAB0lmsv/M7OxuHc5G8pf8Y4Hju22ZZmN5K+9FbbX5kJf32+p76J8QQYHL+X61mFqxfJZFmUi5zn++iJSrXC7Svca/dRoCs8VJtcB68yk3r0eeD6hMY7BpdtCIsXgCZI6R8enDjhdY5+xx11XEcygGnACZ0RYy71pcoUVYsXwK+sEJUCoWaksMbVfbfjgBNhGzzj7QHizJJ0G/E6Cf9N46+4KRYMjnBGJBXegYh3xeBcy2dfYllpwTyL5PKMY02YAudJI690CniKmwAV1oYm1nwQlAn4Nj0YMZ2ztPQMvtc8/Y+yp2MD0B0FZhSX7eqAZhblRraXHlxVgaAsCi9ubEqMoabSHztLiu3ttEggIK2bIAiylMS72qmEhU4De0iQwmACGRQQUAEfZP3wcX8BnJF3AaAMWDqWIsAAAAAElFTkSuQmCC" InformativeScreenshot="2fac64af0e6e4d80f3cf63cae1591c1d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Grocery Shopping and Online Supermarket in India - bigbasket' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                              <uix:Target DesignTimeRectangle="1154, 178, 35, 30" ElementType="Button" FriendlyName="'BUTTON'" FullSelectorArgument="&lt;webctrl tag='BUTTON' type='submit' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='btn btn-default bb-search' aaname='                                                                                                           ' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACcAAAAiCAYAAADcbsCGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAG3SURBVFhH7ZYxTsNAEEVzGU7ABTgBJ+ACXAAuAB0VlBQgUSIoUkKXAmEkihQBXCARyYULCoMiJVKKgW/lWyYe4xmjOBbyk54EmU3yM7O7SU9aTBeuLr2DwYa0TZJ1Tlu0LkkXziv5n+GO7jalH+7JW3K/eAWR6fxDXt5v08e151gltcJdjnbTICSePMs4CSSZRYtHRJJpJBfDHfX5VRJ3uMH4OF0/m3/KzethoY6Ocg3oh/uFNVUSVzh0DKBTJw9b6hp6+riddRJ/a2vKJOZw6AhGiY5VBaMYK4gnT2q9TGIOh/EAbZS/yRF79h8xh8OGt6xbFiMFQXSu1jWJORz2D/aaVqsS4MNpNU1iDgc8b5CXV41W0ySuzuHu0mpVgpWGC79vfoBTq9XL5Ild6Z7jacXp0+pl8kN57jpiDge9lyovbe9eJa5wHJHlezP//Wu9tClxhYMcLwiis0IXERq/TPIM46sfa6ok7nAQgfK/QAC6mQejRMeG8XX6vycgqRWOokt4cwShOJXL3fQGJH8K59ETkDQWDloDkkbDQQTEftVqlDQeziLpwnkl7Q6nFdctyTrXPkS+ACyvvuk3ey78AAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke amazonFileExist workflow" sap:VirtualizedContainerService.HintSize="1316.8,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Lib\UserPrefItem\amazonFileExist.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InOutArgument x:TypeArguments="x:String" x:Key="in_item">
+                          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="item" />
+                        </InOutArgument>
+                        <InOutArgument x:TypeArguments="x:Boolean" x:Key="out_item_exist">
+                          <mva:VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="in_item_exist" />
+                        </InOutArgument>
+                        <InOutArgument x:TypeArguments="x:Double" x:Key="out_item_price">
+                          <mva:VisualBasicReference x:TypeArguments="x:Double" ExpressionText="in_item_price" />
+                        </InOutArgument>
+                        <InOutArgument x:TypeArguments="x:String" x:Key="out_item_actual_name">
+                          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="in_item_actual_name" />
+                        </InOutArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                    <If Condition="[in_item_exist = False]" sap:VirtualizedContainerService.HintSize="1316.8,596" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="377.6,405.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[all_items]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='item_name'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='item_price'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='product-template' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='text'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='product-template' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column1' attr='text'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='product-template' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='h4' idx='1' /&gt;&lt;webctrl tag='span' text='Rs' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="336,157.6" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="Rows" MaximumResults="10" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                            <uix:NExtractData.Target>
+                              <uix:TargetAnchorable DesignTimeRectangle="639, -485, 880, 4123" FriendlyName="'SAVE Rs'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;product-deck&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='dynamicDirective' tag='DIV' /&gt;" Guid="a0197735-b833-4e91-8937-05d2de643718" InformativeScreenshot="71eb44ac512273d3c187c3f1e9c64aca.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Best Online Grocery Store in India. Save Big on Grocery Shopping | bigbasket.com' /&gt;" SearchSteps="Selector" Visibility="Interactive" />
+                            </uix:NExtractData.Target>
+                          </uix:NExtractData>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AmazonsaveItem workflow" sap:VirtualizedContainerService.HintSize="336,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Component\amazon\AmazonsaveItem.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="all_item">[all_items]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="item_name">[item]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                          </ui:InvokeWorkflowFile>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="1316.8,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;*** Debug:  &quot; + in_item_actual_name + &quot; ---- &quot; + in_item]" />
+                    <Sequence sap:VirtualizedContainerService.HintSize="1316.8,2465.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="ui:UiElement" Name="element_found" />
+                        <Variable x:TypeArguments="x:String" Default="[in_item_actual_name]" Name="item_actual_name" />
+                        <Variable x:TypeArguments="ui:UiElement" Name="isAvaliable" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="1275.2,136.8" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="f" KeyModifiers="Ctrl">
+                        <ui:SendHotkey.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="9172e2b6-7def-4e6f-a49e-3495b23e39d3">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:SendHotkey.Target>
+                      </ui:SendHotkey>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Find'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1275.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="HardwareEvents" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Text="[in_item_actual_name]" Version="V1">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable DesignTimeRectangle="1325, 101, 207, 41" ElementType="InputBox" FriendlyName="'Find'" FullSelectorArgument="&lt;ctrl name='Find in page     Maggie- Buy Products Online at Best Price in In*' role='dialog' /&gt;&lt;ctrl name='Find' role='editable text' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Find in page     Maggie- Buy Products Online at Best Price in In*' role='dialog' /&gt;&lt;ctrl name='Find' role='editable text' automationid='' /&gt;" Guid="9324a7ad-f276-4425-92f6-0635400c1346" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANMAAAAtCAYAAAA0n16wAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACiSURBVHhe7dOxDYAwEMBARgkS+6/4NDQpiVzeVV7A1wAJM0HETBAxE0TMBBEzQcRMEDETRMwEETNBxEwQ2WZa9/MV8JeZIGImiJgJImaCiJkgYiaImAkiZoKImSBiJoiYCSJmgoiZIGImiJgJImaCiJkgYiaImAki20zAOTNBxEwQMRNEzAQRM0HETBAxE0TMBBEzQcRMEDETRMwEETNBYuYF7GmcYqY/qfoAAAAASUVORK5CYII=" InformativeScreenshot="18a64e3fb74482f7fc3347a562ab37c7.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Maggie- Buy Products Online at Best Price in India - All Categor*' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                <uix:Target DesignTimeRectangle="1589, 101, 30, 41" ElementType="Button" FriendlyName="'Previous'" FullSelectorArgument="&lt;ctrl name='Find in page     Maggie- Buy Products Online at Best Price in In*' role='dialog' /&gt;&lt;ctrl name='Previous' role='push button' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Find in page     Maggie- Buy Products Online at Best Price in In*' role='dialog' /&gt;&lt;ctrl name='Previous' role='push button' automationid='' check:fulltext='Previous' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACIAAAAtCAYAAADLEbkXAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACjSURBVFhH7dJBCoAgEIXh7n+toqAg13oOwYWLqZGEerRxbNHi/RAyJvgRDfKTCMEIwQjBCMEIwQjBCMEIwQjBuiA5Z3HOyThNZdXZmhlyR9SnB2OGeO/L5ft5eUqprDqHEK4TbZkgd0T9Arr2YJohb4iazuu2mTDNEL1kXhaJMV47z3Rf3+u5lsz/yNcRghGCEYIRghGCEYIRghGCEYL9BCJyAES3vrm8ydx/AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                      </uix:NTypeInto>
+                      <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State 'Nutri Licious'" sap:VirtualizedContainerService.HintSize="1275.2,1936" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                        <uix:NCheckState.IfExists>
+                          <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="844.8,1717.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <uix:NClick ClickType="Single" DisplayName="Click item" sap:VirtualizedContainerService.HintSize="803.2,157.6" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Right" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                              <uix:NClick.Target>
+                                <uix:TargetAnchorable BrowserURL="https://www.bigbasket.com/ps/?q=maggie#!page=2" DesignTimeRectangle="653, 440, 131, 19" ElementType="Text" FriendlyName="'Pichkoo - Rich Tomato'" FullSelectorArgument="&lt;webctrl aaname='Pichkoo - Rich Tomato' parentid='dynamicDirective' tag='A' /&gt;" FuzzySelectorArgument="[String.Format(&quot;&lt;webctrl aaname='{0}' parentid='dynamicDirective' tag='A' type='' class='ng-binding' /&gt;&quot;, in_item_actual_name)]" Guid="8540ffca-a5b3-405c-ae68-8a7409d92f80" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIMAAAATCAYAAACz+74lAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJTSURBVGhD7VbrzYMwDGRGpC5UsQodBQbpj46RL7ZjY5s0hD6kfpJPQoI8zmf7CAwpECgIMwQEYYaAIMwQEIQZAgIxw+M2pmEY7HVdymwfgGO8PcqTw31O42VOT2a/D4jv8xumdC7DJU1de2Cdj0XX0/r8AKwZTPMpoWmF+0eaL8eJ/L4ZbCOXa24Q57xOuVlHje41gwLwnnyp3gf0a0zzvTx2omGG+lgL/80M1bEmwgx4D28RnRIAewzyOJlhwVOE5pQgbwZ8E+3Jw3yDN01Zy9em4wSOzOD0Ye47PcUMWs9RoytmwBOJ9xtNxD+pech1W28bbHiueR9y2VrKy9lRw87PBAWmeztOjaSEqICbYMOpiw3CVOExKRUb9/E8NkwXwcfvRMUMJq7SZ+IDsl4qKsXetMLzwRvozFDj3gzhcisN1D3g5praAgyPOxk6a9j8gdRHvpjBJacBHOYzoddysWFMFwOF2SbRGInfcWbsCgHAhFm758sw8+XSOsQMrSPWa22tLTD1qq2HMW6M4wdNKs+tFjUevdfO99aw+ZnQ+IgZoAF4nOlEPmSGI2B8jgP87oc4zPCCGTAo3wNy4PyfgHc+qDcDv4mmMcStY6MWs1Yn7uN3wsXc8Sp9Jj5gncu6d81Q487zwtlrhsKj+2V4nK7OGr5gBgCR8XE75X2wU4tFPDMDAMVvnGgI5tTrAJiMinfWCADk0I0sOXORnD6aYz1TmleYed8MAMNt+PrNQLGZI1/yA0mQeur6S8x6DcUMgUCYISAIMwQEYYaAIMwQKEjpD8DZ8yYXn4yQAAAAAElFTkSuQmCC" InformativeScreenshot="84047013460746d28caeeb7dc521cbe2.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Best Online Grocery Store in India. Save Big on Grocery Shopping | bigbasket.com' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <uix:Target DesignTimeRectangle="678, 469, 9, 8" ElementType="Icon" FriendlyName="'PATH'" FullSelectorArgument="&lt;webctrl idx='17' tag='path' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='path' class='' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAYAAAC5tzfZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACbSURBVChTY3j8+tZ/UjH1NLVtSvjfvikRQxyGMTQdubHxf8Z8CzAGsdHlQRis6fazC/+XHe0Em16+0geuCcQGiYHkQGpQNJ25uweuEBcGqUHRBMJbz83FqhiEQXIwdSiaQLhvexaGBpAYshoQRtEECjV0TSAxZDUgjKIpf7HT//IVPmDngDCIDRJDVgPCKJqQQwifGIom4vCt/wBHLAAz9B36VAAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                  <uix:TargetAnchorable.PointOffset>
+                                    <uix:PointOffset Position="TopLeft" X="10" Y="8" />
+                                  </uix:TargetAnchorable.PointOffset>
+                                </uix:TargetAnchorable>
+                              </uix:NClick.Target>
+                            </uix:NClick>
+                            <uix:NClick ClickType="Single" DisplayName="Click 'chrome.exe'" sap:VirtualizedContainerService.HintSize="803.2,157.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                              <uix:NClick.Target>
+                                <uix:TargetAnchorable DesignTimeRectangle="0, 133, 318, 29" FriendlyName="'Copy link address'" FullSelectorArgument="&lt;ctrl name='Copy link address' role='menu item' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Copy link address' role='menu item' automationid='' check:text='Copy link address' /&gt;" Guid="cda439f1-9d4c-4ae4-aa93-bc97af7cb7b9" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAUIAAAAhCAYAAACsuqLcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAN1SURBVHhe7ZhZbtswEEB7FAfIuWLkKE6O45zF/i/yUSAIEPgA6adKDkmJw0VSUC8J+R4goLK4zDCYp1F//X79M3x+/h0AAHrk7f1jQIQA0DWIEAC6BxECQPcgQgDoHkQIAN2DCAGgexAhAHQPIgSA7kGEANA9iBAAugcRAkD3IEIA6J4mRXjaPw6bu/voehz2J//w6pyG/fZ+eAgBnF6GBxPTeL/IcdiZ8buDv70Ah6eleFwOl4wB4JY0JkJXsJvti/lXxOH5hkWciPDLIEKAS9OUCG1Bb56O/u67gAgBvjvtiFA+Odd9AqefzloCQTy+u8zGVMRmus6sExXS8VpsEoudZ+f7vfQ6qQjdfXkvi457c/c8pP6SF0Z4bl4cuQjT3I9yn8awO/hYxj2SvZMY9blHf6s4d3MhXLg27YiwKiKNSKAgmlRU+v8V9ZhRXnLnqHdVK0Ro9xs72XI8brwXzVzXa14IuygOyTcan+XvJTTtl+8RYsxkrCSb5pnsLftE4w8v7nzTF5i530+LAlyFZkQoxTonCEuta1QSTUXkUPLL1rFzCusKa0SouzadyzQ+l/gK4twq+SuJp8ISXA6pCNUZqTP0yH5+rdJzSzwG4Ea0JcIlSRSL3KCKUYtqRBWyltu8hFeIMIlb/+als12RX0DytB2bv8K8Sv6xCMvnWBZhfEYyL95zvIJ43Rz7mz5bt7b9XYkV4Iq09Wm81FkomUV8WYQGey/ySyWRckYRVrvOCeka43OI467kn4kwk/pKERbWzpCzTmIUgiiXcwQ4N+2I0BfrbFchRVgoNCWIsghzQdhxppgXP+3OI0I7Xn6f3cuOTfKLcyvmn8Rnx1ckNSfC8rw66nM8Ij9ngMvTkAgNodtIC8kUaSha6ZiUeMpFroq6IlApZtupzRbu+URoyTo+RXmvaS33PI7XyTWfE0vK7bkgwsLaMs7fn/bP0flFcUZ/G4vsNXueAOenLREKviCtAMKViCYUdrh0QYci9xIpjvFIF7T0KVeWU1jvqyKc8qvsG14Gchlh2hjV+vp8bFwidLVYmrubM8WQxhTQ81SMclbTs3E/Fa+5kCDcgAZF+L/UirxAJhkA+Ikgwoy1InTjdCcFAD8RRJixJMLp0xIJArQBIgSA7kGEANA9iBAAugcRAkD3IEIA6B5ECADd8/b+MfwDwX1Gzsim+HAAAAAASUVORK5CYII=" InformativeScreenshot="2934c11321519e7ef5a9b873fcb750bd.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_2' idx='*' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Visibility="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target DesignTimeRectangle="44, 136, 129, 30" FriendlyName="'chrome.exe'" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIEAAAAeCAYAAAALkH3GAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAALySURBVGhD7ZaJbSMxDEW3FAdIXTFSiuNyxrWM+3ATikhJM/wkNUfWxy7CBwyQsXXweJLzJwW/npAgCAmCkCDIhARBSBCEBEEmJAj6EtyGz3R4exfPZxpu9cunc0vD8T19tABul/SRY5reV7mmUx5/GuvrAxi/1uIpOTwyhp/iSFCCPRwv+S/BeH5hAkqC3YQESxgJKJnD17W+/SuEBI8EJeBrdtu1r38usACt6PVWMWM6Tc23jbmBGD0em8qx0DyaX/fCdbQE5d3fi8C4D2/npHvHh6V9nw+NlUDnfuV3HcNprLFMe6i9VYxYd9ErmXt+9siGEnSbgHABnCLrJuH/EThmahy/FfqnaYMEtN90g/nxlPG1yEu3XT4MJxEH5yvGm/xrA+b97B4tRiMiCKbzVHvzPmL8eCn11Yc3vw/zoquABBzoUnGI3m0BAukmFKDxZh2a46zLbJEATyvmMo+3Am9A5tbJHwTWzWJKDloCqBHUsML71bW87wk55gdYCdYK5CaYgUCwSROQBDZ2WcANEqi48bNa8OOG/BqcJ53U+rR5nfylBH4dfQlkjXie3HN6mnRlDn2GtS1r0+cg1Ubsz8GaUdBIwW4JMvTOjdcF0txRgu5tM8O3hayDjLuTv5HACL1RAmdtA9daxcg0SdZzlKAENdBFmzgAZxMoji+BLQ6Ny4msXmf3kYDG8+eLe9FYlZ/Mzc1fxUfjOw1aksCf1wd+ggS2zssoCTLNMr1IDrAFzCcFiu4nCAl15OFE6IQuBn0/CQhz0gF/r3mt8r2Mt4hl58gGlT1XJHDW5nH1/TacRf1EnKI3BO+1WE/ESsDUYCj59qgit6Tag8m0BGsB3TEVtn/t+vIb09bbK8GcX2ffdhD4ybJQjLA+1ofiYplhMZ17mTPHoGNq4DyIkWs1fzftB/HmZ4cAREeCv6WXoIMpcPBsXixBGYcnKHg2L5Jgvk5DgNfzIAmC/4mQIAgJgpAgyIQEQUgQhARBJiT49aT0DdidNMXNXmTzAAAAAElFTkSuQmCC" SearchSteps="Image" TargetType="ImageBased" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NClick.Target>
+                            </uix:NClick>
+                            <ui:GetFromClipboard TimeoutMS="{x:Null}" DisplayName="Get From Clipboard" sap:VirtualizedContainerService.HintSize="803.2,22.4" sap2010:WorkflowViewState.IdRef="GetFromClipboard_1">
+                              <ui:GetFromClipboard.Result>
+                                <OutArgument x:TypeArguments="x:String">[url]</OutArgument>
+                              </ui:GetFromClipboard.Result>
+                            </ui:GetFromClipboard>
+                            <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="803.2,82.4" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" Url="[url]" Version="V1" />
+                            <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State 'ADD TO BASKET'" sap:VirtualizedContainerService.HintSize="803.2,718.4" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Timeout="8" Version="V1">
+                              <uix:NCheckState.IfExists>
+                                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="375.2,500" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <uix:NClick ClickType="Single" DisplayName="Click 'ADD TO BASKET'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://www.bigbasket.com/pd/266157/maggi-pichkoo-rich-tomato-90-g-pouch/?nc=cl-prod-list&amp;t_pg=&amp;t_p=&amp;t_s=cl-prod-list&amp;t_pos=1&amp;t_ch=desktop" DesignTimeRectangle="1162, 513, 106, 16" ElementType="Text" FriendlyName="'ADD TO BASKET'" FullSelectorArgument="&lt;webctrl aaname='ADD TO BASKET' parentid='root' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='ADD TO BASKET' parentid='root' tag='SPAN' type='' class='' check:innerText='ADD TO BASKET' /&gt;" Guid="44893ef2-0f02-4e1a-b105-b91f2949a7d6" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAG4AAAAUCAYAAABs4ghcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIUSURBVGhD7ZQxjgIxDEX3MtwUibtwBToaSi4Aoh2JAlEABUWWKPbEdr4zWYktIsXSL8gkjr+fw896vwpD/WmA61QDXKca4DrVANepBrhOBcEdH4HiFI7m2+52p286rpPel3PIuIfLWe+TwmcoHtu893wIL1rmeN02KpfWNlxpnw10ruZ/vd+Ey5s+z5F9pf5on3O+9yHs5G8b0SPwliPnBeC0SQsEFTZfJpqbijPGp1NcXGhyFDWHjMpvPDgqB98P9ieRJwn/o1SjHaaaf4amfUmvtj+oXtgbJOqXZRBVgOOLrhM2C8FFGShecTm/XtdywBEgCL72rQpO11L3T2vugJj+OIP6D+D0RCFILjhjyi0OvM5SGJx/d5T/Su0rmqPYu+yfm5mirGU+M/k+eWCKsHubwdmpBVPsN083zp8qPP1aGELK6YH7+53F/gb/SgIiNzf1hwPX6tdp1AqubIyewLjmg+vgxS1MdIt/JOmVwUXYZb5yv1wv1AbO+Tuh0BMFmkeX8HR6xbExVEyWA6EGvfo66uDSmTb/SLInuj8Y/HfBmcZn6ZcEwdFZ2RhUHEPDzZXyXw/MwUDha4vC4NSLaPKP8iz0B9T2RXB0uZMsXZQScONs2OR8RocB7qr2t/cRN0NEfRjYXxmp7kb/z2048pDKEHVWB5vWcW8+4fwj1F/cUFca4DrVANepBrhONcB1qVX4Bf/tNb8UfY6YAAAAAElFTkSuQmCC" InformativeScreenshot="874140cfd791b0019ed2680804b9ea2f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Buy Maggi Pichkoo Tomato 90 Gm Pouch Online At Best Price of Rs 15 - bigbasket' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                            <uix:Target DesignTimeRectangle="1131, 501, 168, 41" FriendlyName="'ADD TO BASKET'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='5' parentid='root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='Cs6YO rippleEffect' parentid='root' tag='DIV' aaname='' check:innerText='ADD TO BASKET' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAKwAAAAtCAYAAAAz3YClAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAANiSURBVHhe7Z29ahtBEMf9MmkSktdKkT55AWORx0jjQl3SupMMThE4UGUhGZUSqLAssFzoY6PR7pz2Y3alJA53A/+Bn7Hvdlc7s78bNYa7MAiEooCwCFVRC7vb7cyP+y+mc/vOXPbeANA45CI5SW5yHISlC9/vP5uvtx/EiQA0BTlJbrK0F/TLer02nT46K2gn5CY5Sq5ebLdbs1qtxIEAtAVylFw9CLtcLsVBALQFcvQg7GazMYvFQhwEQFsgR8lVCAtUAGGBKiAsUAWEBaqAsEAVEBaoAsICVUBYoAoIC1QBYYEqWits9Xz4L7J9jE0V3bt5fHL3wpjPwnHHNfx4MpOHcJyPPMfFc/c49uHOvLjLHC+PnWCtkK6Zu3FxSPNK+V/2OmaydrfrOOZl6xPmWa+3vjM3/t9xUI5Cbsco1+9/01Jhw8ONRZQOpC6yJ5U9lOjAZ2O6eEIuwknhDti/xw9MsAZ/vjDe4nLypd9j9xhLUMqfZQ3z8nON6yPtV6yNhKtXfAZN0UphucDzmXzIorBEJGPuUI7rh9dDMsI6MUXhS/eKwoZ7KefvrmUfjKg+mQcUwr4aYQeR5MwKGx1m9lCEbpwiC5v/bCLfleOuWUcy9nT+LJGNdC/1nFk+T35QkojHQtgTxF1K6Fp5aUJh8l1E7nYhsnx2zZywf/6Zyfgz8g/w5GWpbH045L3m9xkBYcukQoQdh67lhVXQYU90sHPyl/BzZWFJ8nS9dLx/PQHClsh8bboIO4ggjSsud6PcofCBlg8hI19J9mI3LAtr55yXv4Rfk7A+svAQ9jWIhDsSdk5RWDfXF0I6FJZVlson3y3FNVhksbsSsrBBBzwrf2mdE/UR9gZh/xlX9EwRbYFt4ViYOOKi8pwwItGzlL7e97AEXpQfAs4vDbvvM/NfdU3FD6cf3j6LD7S7LtdmH5lvAAgLwF8AYYEqICxQBYQFqoCwQBUQFqgCwgJVQFigCggLVAFhgSogLFAFhAWqgLBAFYmwV/234kAAmobcTIS9/vXJdPrvxQkANAU5SW7WwvI7DiaTifn286O56qHTgnZALpKT5Gb9jgP6QW/omE6nZjgcmsFgYKqqAqBxyEVyktys3yLD7+kig+kG2Twej81oNAKgMchBcpGcJDfte7p25jczZgcaxdbrKAAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Item is added to cart&quot;]" />
+                                  <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="333.6,82.4" sap2010:WorkflowViewState.IdRef="NGoToUrl_2" Url="https://www.bigbasket.com/" Version="V1" />
+                                </Sequence>
+                              </uix:NCheckState.IfExists>
+                              <uix:NCheckState.IfNotExists>
+                                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="375.2,302.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Item cannot be added to cart for some reason&quot;]" />
+                                  <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="333.6,82.4" sap2010:WorkflowViewState.IdRef="NGoToUrl_3" Url="https://www.bigbasket.com/" Version="V1" />
+                                </Sequence>
+                              </uix:NCheckState.IfNotExists>
+                              <uix:NCheckState.Target>
+                                <uix:TargetAnchorable BrowserURL="https://www.bigbasket.com/pd/266157/maggi-pichkoo-rich-tomato-90-g-pouch/?nc=cl-prod-list&amp;t_pg=&amp;t_p=&amp;t_s=cl-prod-list&amp;t_pos=1&amp;t_ch=desktop" DesignTimeRectangle="1162, 513, 106, 16" ElementType="Text" FriendlyName="'ADD TO BASKET'" FullSelectorArgument="&lt;webctrl aaname='ADD TO BASKET' parentid='root' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='ADD TO BASKET' parentid='root' tag='SPAN' type='' class='' check:innerText='ADD TO BASKET' /&gt;" Guid="5c0a3767-b8a0-44bb-aef5-4479f1f0ee5c" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAG4AAAAUCAYAAABs4ghcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIUSURBVGhD7ZQxjgIxDEX3MtwUibtwBToaSi4Aoh2JAlEABUWWKPbEdr4zWYktIsXSL8gkjr+fw896vwpD/WmA61QDXKca4DrVANepBrhOBcEdH4HiFI7m2+52p286rpPel3PIuIfLWe+TwmcoHtu893wIL1rmeN02KpfWNlxpnw10ruZ/vd+Ey5s+z5F9pf5on3O+9yHs5G8b0SPwliPnBeC0SQsEFTZfJpqbijPGp1NcXGhyFDWHjMpvPDgqB98P9ieRJwn/o1SjHaaaf4amfUmvtj+oXtgbJOqXZRBVgOOLrhM2C8FFGShecTm/XtdywBEgCL72rQpO11L3T2vugJj+OIP6D+D0RCFILjhjyi0OvM5SGJx/d5T/Su0rmqPYu+yfm5mirGU+M/k+eWCKsHubwdmpBVPsN083zp8qPP1aGELK6YH7+53F/gb/SgIiNzf1hwPX6tdp1AqubIyewLjmg+vgxS1MdIt/JOmVwUXYZb5yv1wv1AbO+Tuh0BMFmkeX8HR6xbExVEyWA6EGvfo66uDSmTb/SLInuj8Y/HfBmcZn6ZcEwdFZ2RhUHEPDzZXyXw/MwUDha4vC4NSLaPKP8iz0B9T2RXB0uZMsXZQScONs2OR8RocB7qr2t/cRN0NEfRjYXxmp7kb/z2048pDKEHVWB5vWcW8+4fwj1F/cUFca4DrVANepBrhONcB1qVX4Bf/tNb8UfY6YAAAAAElFTkSuQmCC" InformativeScreenshot="44fa7cdb4e70813375404aeaf995e675.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Buy Maggi Pichkoo Tomato 90 Gm Pouch Online At Best Price of Rs 15 - bigbasket' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <uix:Target DesignTimeRectangle="1131, 501, 168, 41" FriendlyName="'ADD TO BASKET'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='5' parentid='root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='Cs6YO rippleEffect' parentid='root' tag='DIV' aaname='' check:innerText='ADD TO BASKET' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAKwAAAAtCAYAAAAz3YClAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAALuSURBVHhe7Z0xbhsxEEVzmVQpcj0fwICAHEVtSndGApeqA9hwK0CF4cJx4YIRQf5dznCGu04caAf4H3iFdrkUh3w7KvUpMUygUFgmVISw339dpd2PL+n69jMhFye7mJ1sMwmbb3z7+dV8kJBLkZ1spZ2EZWclWyW7iUzCWgMJ2QoIhSUhQCgsCQFCYUkIEApLQoBQWBIChMKSECAUloQAobAkBAiFJSFAKCwJAUJhSQgQCktCgGxO2MNLXVC6Twd17+bpud6TOR3luHmONs/p8UGOa7GfqXnZz2Mf7tJrvYy8Pu3EXJJ9OtVxOtZzo/qvb3fp8a3enjLXVfZH1jnN93aXbtrPOrlGo7Y54/373yAbE1YerhbROpBpkxupyqGoAz/e54sLcmWqFPWA23t4YcQc+H5jfKHW1Ep/pqxRSzCqH7LKutpa9f5Y6zX3xqLulz6DS4FsSlhs8OloH7IpbEbJ6B3KPL+8LnGErWKawo/uDYWVaxnXX6+5L4baH+cFpbAfhuwglpyusOow3UMxunGPLaz/3Rm/K+uuOaUbu1w/JCrp1zI9c/TrxIvSRY+lsAvoLmV0LV8aKYzfRexuJ7HlK3N6wr7/O7vxK+oXNPJCqrI/iL1Wf50KCjumF0J2nHzNFzZAh13oYGvqt2hrhbBZ8n6+fnx7vYPCjnB+NmtkBzGkqZuLbuQdCg50fAiOfCPZh91wLGx5Zl39Fu2eyP2xhaewH4ESbkZ2TlPY+mwrhHUokNWWqsXvluYcENnsrhlbWNEBV9VvzbOwP8baKOw/Uzfd2cSywWXjIIyO3lQ8I6NEdxn9vJ+BBE3GLwHq61PWvbL+3/t0wMvZplnn8IWu1+29Ocf5BaCwhPwFCIUlIUAoLAkBQmFJCBAKS0KAUFgSAoTCkhAgFJaEAKGwJAQIhSUhQCgsCQFCYUkIEApLQoBMwvI/DshWMf/jgP8iQ7aI+y8yOfkGOy3ZCtnFVtYcISzDbD0UlgmUlP4AUUO8mldXtCsAAAAASUVORK5CYII=" SearchSteps="FuzzySelector" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NCheckState.Target>
+                            </uix:NCheckState>
+                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="803.2,284.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                              <ui:CommentOut.Body>
+                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,206.4" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddToCart workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Component\Shop\AddToCart.xaml">
+                                    <ui:InvokeWorkflowFile.Arguments>
+                                      <InArgument x:TypeArguments="x:String" x:Key="url">[url]</InArgument>
+                                    </ui:InvokeWorkflowFile.Arguments>
+                                  </ui:InvokeWorkflowFile>
+                                </Sequence>
+                              </ui:CommentOut.Body>
+                            </ui:CommentOut>
+                          </Sequence>
+                        </uix:NCheckState.IfExists>
+                        <uix:NCheckState.IfNotExists>
+                          <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="377.6,531.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="336,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Item not found&quot;]" />
+                            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[all_items]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='New column 0'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='item_price'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator='.' ThousandsSeparator=',' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataNextLink' /&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;column exact='0' name='Column0' attr='text'&gt;&lt;webctrl tag='span' idx='3' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='h2' idx='1' /&gt;&lt;/column&gt;&lt;column exact='0' name='Column1' attr='text'&gt;&lt;webctrl tag='span' idx='3' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='span' /&gt;&lt;webctrl tag='span' idx='2' /&gt;&lt;webctrl tag='span' idx='2' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="336,157.6" sap2010:WorkflowViewState.IdRef="NExtractData_4" LimitExtractionTo="Rows" MaximumResults="10" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                              <uix:NExtractData.NextLink>
+                                <uix:TargetAnchorable BrowserURL="https://www.amazon.in/s?k=maggie&amp;crid=TLCRR2GKD5PM&amp;sprefix=maggie%2Caps%2C365&amp;ref=nb_sb_noss_1" DesignTimeRectangle="1173, 543, 95, 48" ElementType="Text" FriendlyName="'Next'" FullSelectorArgument="&lt;webctrl aaname='Next' parentid='search' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Next' parentid='search' tag='A' type='' class='s-pagination-item s-pagination-next s-pagination-button s-pagination-separator' check:innerText='Next' /&gt;" Guid="257b6471-3426-445b-8183-a1d64686410b" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGMAAAA0CAYAAACesIbaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAO8SURBVHhe7Zy9S1thFIf9D0r+gFan3KUEpw6F6hS3IhkUiiIOCg52qlKokkWnGjrU0qFba4USHUo6iC7FyVanBCpqVWJtNKLW+BESRf31nPuRDz/qR8l939bzwMHc11zB83jOeSO8twyCNpQdHR1BorRxfHxcFOdR9m12FhKljem5OXxfXEQimcReOn2uEGlTLsDJz+7vY31zE3MLC6YUp2IKERkuwwJWSMbM/DwODw+LhIgMRbCQxOqqWSEOIkMRXBHcsnZ3d3PVITIUwjPkJ1WH065EhkJ4qPMu6+DgQGSohgXwtjebzRbL4P2w4D6cd5GhCZz3TCZj7qpEhmJEhkaIDI0QGRohMjRCZGiEyNAIkaERIqOARw0NuFNRgcHBQXvFXZTKSI5042GgE5Ele8FhbQxdgW6MrtnXLnHX58Mtj8cMFULUyhhuMn9xb1sESXvNJDGERk8Twgn7+tqsIdzsQd+UfXkBsVgMt8vLlQlRLyNQjzrDQMdIyl4lzpGRScURjcWR2rMXLiSK/qrLy2BUClEvo3kI0ZFOeKt68dVJ8kkZe1G8aa6E934ttbVa3DMq0f7J6mHxD63w+kO5e+Nv6+lnDiD+JZRLqBONw5fre6qEaCEjSe0k0mbA/yKKDH/jhIzoy2p4g2NwaifzuRteI0R/90wcYefeJbrPaEU4N4Mm0UfJvEplOKgQookMghPpqUF/jF4XybBaTcfHNaRSKSumB4orh+5tMWrg9xtoGY7bi8zfyeCd1c2UQZgtpo5ajCnGSbaVUJ/falH5eGVXBpPF6FNO2mNENuwlk+vJUCGC0UoGslH0+am3Pw8VyIjjXYAqo3DAnyAzFaKq6EVfkNrZk3w7u44MVSIYvWQQmYlePDATUTAzXtdQxVAlFPrYSFnzZW8SPVXV6JnI0utxdNHOrIVamgXJNTxoz13/GZUiGO1kcMsZDxpFMrg6Rp/VwksJ8vlr4OOv1M5m7Pd6g+OWGMIa7vkhPvO+yXw/Jzcv6Wxu9Ie+K5O1B/ilP2dcDf53CO+gVIhg/i0Z/zkiQyNEhkaIDI0QGRohMjRCZGiEyNAIkaERIkMjzpQhuI9zWEZkaIBzjOzUYRnBfcwDlisrIkM1nHw+evxra0sOWKqGD+UvU1Wk02k5eqwKTrrzuIqdnR3s09zgNUZkuAAnu/BBLsuJBLa3t81ZwbsoB3nEkQvhPOLoB0lY39gwK4JFnHqQyybZkih9bNGgZgk8I7g1cUUUimDK+AOHRGmDq4CDd00nqyEP8BshrjaOr5k53gAAAABJRU5ErkJggg==" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Amazon.in : maggie' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive" />
+                              </uix:NExtractData.NextLink>
+                              <uix:NExtractData.Target>
+                                <uix:TargetAnchorable DesignTimeRectangle="462, -2512, 1197, 9976" FriendlyName="'Buy it'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='search' tag='DIV' /&gt;" Guid="3d36f405-8fc5-46e8-9611-b2011ae81077" InformativeScreenshot="5cb9f9a00a9aa917c678629fda22df37.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Amazon.in : maggie' /&gt;" SearchSteps="Selector" Visibility="Interactive" />
+                              </uix:NExtractData.Target>
+                            </uix:NExtractData>
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AmazonsaveItem workflow" sap:VirtualizedContainerService.HintSize="336,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Component\amazon\AmazonsaveItem.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="sd:DataTable" x:Key="all_item">[all_items]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="item_name">[item]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                          </Sequence>
+                        </uix:NCheckState.IfNotExists>
+                        <uix:NCheckState.Target>
+                          <uix:TargetAnchorable BrowserURL="https://www.bigbasket.com/ps/?q=maggie#!page=2" DesignTimeRectangle="655, 364, 165, 35" ElementType="Text" FriendlyName="'Nutri Licious'" FullSelectorArgument="&lt;webctrl aaname='Nutri Licious Pazzta - Masala Penne' parentid='dynamicDirective' tag='A' /&gt;" FuzzySelectorArgument="[String.Format(&quot;&lt;webctrl parentid='dynamicDirective' tag='A' type='' class='ng-binding' check:text='{0}' /&gt;&quot;, in_item_actual_name)]" Guid="efa19bcf-1f89-4d77-bcfd-5c1e8b05355a" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAKkAAAAnCAYAAAB0b2iHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAQVSURBVHhe7ZtrbusgEIWzxkjdUOWtOEtJF9IfWQZ3ZoBhgIE4adNy1fNJlmwD8+IYJwo5BQAWByIFywORguWBSMHyQKRgeSBSsDwq0tvlHE6nLVzTtfKxhdN7d/dbub6fwvlyS1drw7GeTvXxv8SeiTmcw/6ZbijXsHFOb3t4WUafezg/aL8RKQXYCvKwSDlBR+QZDs4tzESkkzGFW9jffk4oXayHYnySFy0Q+UHrasb+lhfp25kK3gT/XSKdMBTpgnixviz+F4r0THPdvjnl/vv2sIge4ssi5YLI02RWBluozkEWZnpNpGP7oKbUd6fE45M5FvF4kpsxsmplPyVGHi8+hbiy5ljsqsA5jh/AOoeR6LxYq3tSv2xnC1uOrbofjxhz7VcOnYd8L9egzu1ZQcV4r2JL6ya1JT/tHI/yIfTtm9rK3E7i7DR0P6depAQnoU7tRHYOrIh8QRXxNO0Gb+IjZozYs69Vakux8PjsR2JX4aW8Ur+ZSLmtxMp2/Fd4F6uNS85tjhy/rUFCJt6rRdPf1p5ofdvcHiHbsXOu53aOp/mU+gvcN9maxmntE0dyckVKV1HdfP0VkQ771nQTr5QxHJ/fJ47XwnU++F4UUWfD5ibCSU+01qGHfWm/dGRReTGW2BIy8d4DEGs+jM/LratxxMbo1azUO9em1MjanOdjV0Cbz504q5iP5TQQKcGdeQJo+f0TIjVILVwhzWL1YyyxMSWWFtfukyK9h/Ul5/z5NNsxNu/nk+HYSKwS6504q5iP5TQWKREnKzsn2IA1KqtPvm4cds6cgBLuBAlmjPiun9jdFDoXjs9tHpKDKbpts31vl83YjqtEPxlxjB8r0dZH4s92xja92gvNQ9T6trk9QmVH5tBc23mb5kPnNma2k8ZN42x0cSSnqUgZNtJNLAtXxEsfpDWJsvyL0yYYSWoiUrWZjhh4M0aKlvvQZ0j68C+9aLyd/MpeF0Nps2+JG9m2ba5oCLZti9oidVQ78y9OJcf6fjWhci8/nHXfr31xyqN43poaG5vDfD7pq3DVVi8g4zhLm4p92DeiIgVgVSBSsDwQKVgeiBQsD0QKlgciBcsDkYLlgUjB8kCkYHkgUrA8EClYHhVp/RttOga/XwPwk9QirUQZf/i3GzcA+A0mIvXvAfDTPCDSZkuV2a4mW+V425u2l61fbEO2X2lbvelXfDjjAMgcfN3zeS0gEV8SquzfNGPtfkWx2+5PTH2tjUjvB4DpFycVkLNhV44kNllJzWdXK75OiLrb3P5Hxh7+3yvA32X6uldUWD7PixSCBPc5JtLq1R+5XXZ9LT8n0uSz+qtA+d8SAJmDImXaL04k0iTMZ0XKiF+1u4X9I/5vCYCMihSAVYFIwfJApGB5IFKwOCH8A6VU6cpfR5txAAAAAElFTkSuQmCC" InformativeScreenshot="e3b5d4cbf8e40a4bf4b9f4152770a635.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Best Online Grocery Store in India. Save Big on Grocery Shopping | bigbasket.com' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target DesignTimeRectangle="678, 410, 9, 8" ElementType="Icon" FriendlyName="'PATH'" FullSelectorArgument="&lt;webctrl idx='9' tag='path' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='path' class='' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAYAAAC5tzfZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACSSURBVChTY3j8+tZ/UvFQ1NS2KeF/+6ZEDHEYxtB05MbG/xnzLcAYxEaXB2GwptvPLvxfdrQTbHr5Sh+4JhAbJAaSA6lB0XTm7h64QlwYpAZFEwhvPTcXq2IQBsnB1KFoAuG+7VkYGkBiyGpAGEUTKNTQNYHEkNWAMIqm/MVO/8tX+ICdA8IgNkgMWc3j17f+AwAnIABhBq2YSQAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NCheckState.Target>
+                      </uix:NCheckState>
+                    </Sequence>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEachRow.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEachRow>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1392,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="1012.8,2666.4" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[shoppingList]" DisplayName="iter row in shopping list" sap:VirtualizedContainerService.HintSize="971.2,2573.6" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                    <ui:ForEachRow.Body>
+                      <ActivityAction x:TypeArguments="sd:DataRow">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body for iter row in shoppinglist" sap:VirtualizedContainerService.HintSize="937.6,2457.6" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="content" DisplayName="get content" sap:VirtualizedContainerService.HintSize="896,188" sap2010:WorkflowViewState.IdRef="GetRowItem_3" Row="[row]">
+                            <ui:GetRowItem.Value>
+                              <OutArgument x:TypeArguments="x:String">[item]</OutArgument>
+                            </ui:GetRowItem.Value>
+                          </ui:GetRowItem>
+                          <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="quantity" DisplayName="get quantity" sap:VirtualizedContainerService.HintSize="896,188" sap2010:WorkflowViewState.IdRef="GetRowItem_4" Row="[row]">
+                            <ui:GetRowItem.Value>
+                              <OutArgument x:TypeArguments="x:String">[quantity]</OutArgument>
+                            </ui:GetRowItem.Value>
+                          </ui:GetRowItem>
+                          <Assign sap:VirtualizedContainerService.HintSize="896,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[item_upper]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[item.ToUpper()]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <uix:NClick ClickType="Single" DisplayName="Click 'INPUT'" sap:VirtualizedContainerService.HintSize="896,157.6" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.flipkart.com/" DesignTimeRectangle="484, 147, 522, 36" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' aaname='Search for products, brands and more' /&gt;" Guid="98b0efb8-ac5e-46e2-bb0d-54771e57a063" ImageBase64="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" InformativeScreenshot="813794446686cdc321ad37558a3d1b38.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books &amp;amp; More. Best Offers!' /&gt;" SearchSteps="FuzzySelector, Image">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="1014, 156, 20, 20" ElementType="Icon" FriendlyName="'SVG'" FullSelectorArgument="&lt;webctrl tag='svg' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='svg' type='' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFbSURBVEhL3ZQ7TgMxEEA5Dg1lekQuwAXgAmmRoIAKQUkDghIqRAWiDEqbAlFS0FBCi8iSD+E35C07jp1sxpZCCniSFWk9nmePPZmTGfOPBQ9Pn7J72ZPVo7ZUtlqyvPcitZOOXNz0i4g0SgX79Z7Mrz1PHNWdTO4eP4pomzHBxlnXJapstvJTIGSsHLaHc4NTpUgCQeP2zSVAlHW/ipkh1/fvuZgYThIjECwNFrCQnVog0Y2cR+7ECTiuLiJBDC1X7bhTfCnHCdiJClLQh8BdWDiB/3JSSI13Ar+uZZc7Cq+LWPrDwglIqgJ2Z0EspSEWkYUTgPZA7I37vULHWwQCgvWNIzm4eg3KRRn569Dki9tZtJyBANi5SqyxsP7zyx1YkjEBcBK/DP6gGU+b/TyxfrMkpQKFRZSFS6dP/HthLkViCmKkSKYSgC+hrKNMLQAkk3rnVwQWf10g8g2CyF+dAJ4OYgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayBetweenKeys="1" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="896,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Text="[item]" Version="V1">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.flipkart.com/" DesignTimeRectangle="484, 147, 522, 36" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' aaname='Search for products, brands and more' /&gt;" Guid="2e5077bc-2f1c-4aac-8337-1ae7946e5912" ImageBase64="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" InformativeScreenshot="7d750f1b470029cc7244123cb340772e.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books &amp;amp; More. Best Offers!' /&gt;" SearchSteps="FuzzySelector, Image">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="1015, 156, 14, 14" ElementType="Icon" FriendlyName="'PATH'" FullSelectorArgument="&lt;webctrl idx='2' tag='path' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='path' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAE4SURBVDhP1ZOtTgNBFIV5HAyynsAL9AXgBWpJqABFQGIgIEERFAQJwSIaJAKDBEvo9o9Cy22/Yc7sTHdZKjCcZLLJ3LPf3HvnzoL9kf4J6Pl1bHtXA1s/7lptu231/Y41Tnt2eT/0jqIKoIPrgS1uvP24Vncze3wZeXeuBNQ874cfalttlxVg1tpRN49Ns5yFBdDtw0cwAsz6Xz6Sq/X06Q7AQ2axAmhlGsDAyVUCpgMvop45EGkqiPE3qczGSc/veBBkgeaRLoReSQ4U39Q8KvM7UFx3WZNnxW3iZb4kB+JngTitSngpCS9AyYGQZqhsRmLFs8YLkAKITc0IsMOb96RMyufJCLK8kyXxAEJkIljVWtr8/tIjwRIQIrM4/XgxtGd3QwfQnmAFkESQcmg+cxb3jVgK69gEOPF9PIX1chkAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NTypeInto.Target>
+                          </uix:NTypeInto>
+                          <uix:NClick ClickType="Single" DisplayName="Click 'SVG'" sap:VirtualizedContainerService.HintSize="896,157.6" sap2010:WorkflowViewState.IdRef="NClick_7" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.flipkart.com/" DesignTimeRectangle="1014, 156, 20, 20" ElementType="Icon" FriendlyName="'SVG'" FullSelectorArgument="&lt;webctrl tag='svg' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='svg' type='' aaname='' /&gt;" Guid="23b20538-4a9c-46b1-84f8-cba3ba22fc2d" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFbSURBVEhL3ZQ7TgMxEEA5Dg1lekQuwAXgAmmRoIAKQUkDghIqRAWiDEqbAlFS0FBCi8iSD+E35C07jp1sxpZCCniSFWk9nmePPZmTGfOPBQ9Pn7J72ZPVo7ZUtlqyvPcitZOOXNz0i4g0SgX79Z7Mrz1PHNWdTO4eP4pomzHBxlnXJapstvJTIGSsHLaHc4NTpUgCQeP2zSVAlHW/ipkh1/fvuZgYThIjECwNFrCQnVog0Y2cR+7ECTiuLiJBDC1X7bhTfCnHCdiJClLQh8BdWDiB/3JSSI13Ar+uZZc7Cq+LWPrDwglIqgJ2Z0EspSEWkYUTgPZA7I37vULHWwQCgvWNIzm4eg3KRRn569Dki9tZtJyBANi5SqyxsP7zyx1YkjEBcBK/DP6gGU+b/TyxfrMkpQKFRZSFS6dP/HthLkViCmKkSKYSgC+hrKNMLQAkk3rnVwQWf10g8g2CyF+dAJ4OYgAAAABJRU5ErkJggg==" InformativeScreenshot="55c4a02da64bc6c9ffdb790beb19d554.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books &amp;amp; More. Best Offers!' /&gt;" SearchSteps="FuzzySelector, Image">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="484, 147, 522, 36" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' aaname='Search for products, brands and more' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke fileExist workflow" sap:VirtualizedContainerService.HintSize="896,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Lib\UserPrefItem\fileExist.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_item">[item]</InArgument>
+                              <InOutArgument x:TypeArguments="x:Int32" x:Key="out_item_price">[in_item_price]</InOutArgument>
+                              <InOutArgument x:TypeArguments="x:Boolean" x:Key="out_item_exist">[in_item_exist]</InOutArgument>
+                              <InOutArgument x:TypeArguments="x:String" x:Key="out_item_actual_name">[in_item_actual_name]</InOutArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                          </ui:InvokeWorkflowFile>
+                          <If Condition="[in_item_exist]" sap:VirtualizedContainerService.HintSize="896,1001.6" sap2010:WorkflowViewState.IdRef="If_2">
+                            <If.Then>
+                              <Sequence sap:VirtualizedContainerService.HintSize="476.8,840.8" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="ui:UiElement" Name="element_found" />
+                                  <Variable x:TypeArguments="x:String" Default="[in_item_actual_name]" Name="item_actual_name" />
+                                </Sequence.Variables>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="435.2,119.2" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="f" KeyModifiers="Ctrl">
+                                  <ui:SendHotkey.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="9172e2b6-7def-4e6f-a49e-3495b23e39d3">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                      <ui:Target.WaitForReady>
+                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                      </ui:Target.WaitForReady>
+                                    </ui:Target>
+                                  </ui:SendHotkey.Target>
+                                </ui:SendHotkey>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Find'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="435.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="HardwareEvents" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Text="[in_item_actual_name]" Version="V1">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable DesignTimeRectangle="1325, 101, 207, 41" ElementType="InputBox" FriendlyName="'Find'" FullSelectorArgument="&lt;ctrl name='Find in page     Maggie- Buy Products Online at Best Price in In*' role='dialog' /&gt;&lt;ctrl name='Find' role='editable text' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Find in page     Maggie- Buy Products Online at Best Price in In*' role='dialog' /&gt;&lt;ctrl name='Find' role='editable text' automationid='' /&gt;" Guid="9324a7ad-f276-4425-92f6-0635400c1346" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANMAAAAtCAYAAAA0n16wAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACiSURBVHhe7dOxDYAwEMBARgkS+6/4NDQpiVzeVV7A1wAJM0HETBAxE0TMBBEzQcRMEDETRMwEETNBxEwQ2WZa9/MV8JeZIGImiJgJImaCiJkgYiaImAkiZoKImSBiJoiYCSJmgoiZIGImiJgJImaCiJkgYiaImAki20zAOTNBxEwQMRNEzAQRM0HETBAxE0TMBBEzQcRMEDETRMwEETNBYuYF7GmcYqY/qfoAAAAASUVORK5CYII=" InformativeScreenshot="18a64e3fb74482f7fc3347a562ab37c7.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Maggie- Buy Products Online at Best Price in India - All Categor*' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target DesignTimeRectangle="1589, 101, 30, 41" ElementType="Button" FriendlyName="'Previous'" FullSelectorArgument="&lt;ctrl name='Find in page     Maggie- Buy Products Online at Best Price in In*' role='dialog' /&gt;&lt;ctrl name='Previous' role='push button' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Find in page     Maggie- Buy Products Online at Best Price in In*' role='dialog' /&gt;&lt;ctrl name='Previous' role='push button' automationid='' check:fulltext='Previous' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACIAAAAtCAYAAADLEbkXAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACjSURBVFhH7dJBCoAgEIXh7n+toqAg13oOwYWLqZGEerRxbNHi/RAyJvgRDfKTCMEIwQjBCMEIwQjBCMEIwQjBuiA5Z3HOyThNZdXZmhlyR9SnB2OGeO/L5ft5eUqprDqHEK4TbZkgd0T9Arr2YJohb4iazuu2mTDNEL1kXhaJMV47z3Rf3+u5lsz/yNcRghGCEYIRghGCEYIRghGCEYL9BCJyAES3vrm8ydx/AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="435.2,328.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                                  <ui:CommentOut.Body>
+                                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,250.4" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <uix:NClick ClickType="Single" DisplayName="Click 'Maggi Masala'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                                        <uix:NClick.Target>
+                                          <uix:TargetAnchorable BrowserURL="https://www.flipkart.com/search?q=maggie&amp;otracker=search&amp;otracker1=search&amp;marketplace=FLIPKART&amp;as-show=on&amp;as=off" DesignTimeRectangle="423, 673, 314, 25" ElementType="Text" FriendlyName="'Maggi Masala'" FullSelectorArgument="&lt;webctrl aaname='Maggi Masala Instant Noodles Vegetarian' tag='A' class='s1Q9rs' isleaf='1' parentclass='_4ddWXP' parentid='container' /&gt;" FuzzySelectorArgument="[String.Format(&quot;&lt;webctrl aaname='{0}' tag='A' class='s1Q9rs' isleaf='1' parentclass='_4ddWXP' parentid='container' type='' check:text='Maggi Masala Instant Noodles Vegetarian' /&gt;&quot;, in_item_actual_name)]" Guid="5ed4af0e-8140-41b5-94b1-5f872251242f" ImageBase64="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" InformativeScreenshot="4b3da487deca4a7668336c9adb7f8096.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Maggie- Buy Products Online at Best Price in India - All Categories | Flipkart.com' /&gt;" SearchSteps="FuzzySelector, Image">
+                                            <uix:TargetAnchorable.Anchors>
+                                              <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                                <uix:Target DesignTimeRectangle="447, 724, 11, 10" ElementType="Icon" FriendlyName="'IMG'" FullSelectorArgument="&lt;webctrl parentid='productRating_LSTNDLEUB3GFGYA5TJGCZUBEV_NDLEUB3GFGYA5TJG_' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='productRating_LSTNDLEUB3GFGYA5TJGCZUBEV_NDLEUB3GFGYA5TJG_' tag='IMG' type='' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACpSURBVDhPY7Dos/lPLh6kmrNW5WIVh2GcmgPnhPwHARCNTR6EcWqec3weWDOIxiYPwnDNIBsyV+X8n31sLhh//vEZrBlEw8RA8sgugWt2merxf+vVbWANuABIHqYeRTMM4zIAXSMIY/Xz84/PoVog4BmQj00dwyQ0AVgoowNsoc4QhCZQtrESGEhf4KEMokF8kDiyOhDGcDYoYaDbAuJjSzBY/UwctvkPAMJC8HyowjR9AAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                                              </scg:List>
+                                            </uix:TargetAnchorable.Anchors>
+                                          </uix:TargetAnchorable>
+                                        </uix:NClick.Target>
+                                      </uix:NClick>
+                                    </Sequence>
+                                  </ui:CommentOut.Body>
+                                </ui:CommentOut>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence sap:VirtualizedContainerService.HintSize="375.2,405.6" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[all_items]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='item_name'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='item_rating'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='item_price'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataNextLink' /&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='text'&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column1' attr='text'&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='text'&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NExtractData_3" LimitExtractionTo="Rows" MaximumResults="10" ScopeIdentifier="b797d73f-0b2d-4a03-aeb4-9560b23753df" Version="V1">
+                                  <uix:NExtractData.NextLink>
+                                    <uix:TargetAnchorable BrowserURL="https://www.flipkart.com/search?q=maggie&amp;otracker=AS_Query_HistoryAutoSuggest_2_0&amp;otracker1=AS_Query_HistoryAutoSuggest_2_0&amp;marketplace=FLIPKART&amp;as-show=on&amp;as=off&amp;as-pos=2&amp;as-type=HISTORY" DesignTimeRectangle="1227, 796, 35, 17" ElementType="Text" FriendlyName="'Next'" FullSelectorArgument="&lt;webctrl aaname='Next' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Next' tag='SPAN' type='' check:text='Next' /&gt;" Guid="5bea4505-e057-4551-91f0-4e548e910940" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACcAAAAVCAYAAADFEfeTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGfSURBVEhL7ZQxa8JAFMf7cdz8En4Bt46d/ATFpYggFJpNKOLSQVzbyanYoXQqOJhB6uRQ6GDdTKIxIuHfd7m7eLleKp6LhfzhkeS9e3e/vHu8C5yxCjhbFXC2+j9wbn+J0vUSzngnPFzc7+Fpwb5COLSGrdPNmcT4evaS99ZI2SNco1WnNbcBZt8r1LQ81WovkUjKgSs1A0xj4SQZ4e4DvI/XGZstKRxv0G1SvOHDTc6JMX3k+7Y/CDiK4MqcVx9V8ld7q3QPd77/KTMc2eVgI7w5cP0wiZkUTXxU5B5zXqlKb419TYQWPKZWS5UBzkc3+VOCmfPyHQsH7PD2QGvqHq7u+HPIqqrLBs6NQrTpasqdFfzUf6DndFh2MOsziuUdbgdH79HIR5kSWWMb4fSe+9yy4F7iOhmc2iIZ2cIBWww79E2N7XQNcH9eq8il67xhzzRXkz0cSbmaY+Bk1ZNDBYBskYxOgqMxIOfWwWslS0YJ9avToHg6jmLMBiz/9/w8EY4k55YOZzA2hOVMywxhFVjlOwbu3FTA2aqAsxPwA+Fo/Izk3dxYAAAAAElFTkSuQmCC" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Maggie- Buy Products Online at Best Price in India - All Categories | Flipkart.com' /&gt;" SearchSteps="FuzzySelector, Image" />
+                                  </uix:NExtractData.NextLink>
+                                  <uix:NExtractData.Target>
+                                    <uix:TargetAnchorable BrowserURL="https://www.flipkart.com/search?q=maggie&amp;otracker=search&amp;otracker1=search&amp;marketplace=FLIPKART&amp;as-show=on&amp;as=off" DesignTimeRectangle="9, 137, 1899, 6642" FriendlyName="'Explore PlusmaggieRitik…'" FullSelectorArgument="&lt;webctrl parentid='container' tag='DIV' /&gt;" Guid="c005c1c9-8d31-4aa1-95ee-7a0c8952a687" InformativeScreenshot="81ddad9be8e62fdac8b3af17f9756c4c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Maggie- Buy Products Online at Best Price in India - All Categories | Flipkart.com' /&gt;" SearchSteps="Selector" />
+                                  </uix:NExtractData.Target>
+                                </uix:NExtractData>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke selectItem workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Component\Shop\saveItem.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="all_item">[all_items]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="item_name">[item]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEachRow.Body>
+                  </ui:ForEachRow>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABsElEQVQ4T2N48G6PweqLbuuXnbPcTwped8l7/YO3uwwY1l7yvA8U+E8O3nIt4j4DjLN/gsn/G0F6/482GMEV+CfJ/s9pU4PzsWG4AadKjf6/ldH6fyneAC6pZcL3PzhdFs7HhmlnwPod5v+jQmT+p9Yq/5+wyeh/9Qyd//XzdP4vOmmB34DbXnr/H1nogNlgvrPuf3Vt/v/KWvz/2diZ/4tIcPzvXY8IJwwDQPhcpsH/Q13G/x/Y6oL55zMgrppz0Oy/nqXgf21TAdwG3AXaCBPbOdcULPZKRRsuVtKv+Z+BgeH/guMQr2AYcKrEEK54xWnL/29lIa5afRiioWetMdiAjhUQV2EYcCENEQvrdpuDxUB4+SmIAaCABBkwdYcpdgNeaGr/X7PfHCx2vBoi9shcB8wH4ZAM+f/C4hxwPqYBGtpgP4PCAsR/A/TC/Gqd/1EFCv/dwiX/s3My/89oVMU04GC38f+rYfr/ty8x/X+80vD/LWB0Xgcm7T3TTP5nNqkCExX/f3Nnkf+FPRpwzWAD1lx0Izszrb/sd5/h2otlBkAOydl5+Tnr9RefzjQAAAIEbPBUWw7NAAAAAElFTkSuQmCC" InformativeScreenshot="2d238df014f2700258fc4c85a2ba7c93.png" Selector="&lt;html app='chrome.exe' title='Online Grocery Shopping and Online Supermarket in India - bigbasket' /&gt;" Url="https://www.bigbasket.com/" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
